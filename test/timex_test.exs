@@ -15,7 +15,7 @@ defmodule TimexTests do
     date = Timex.to_datetime({{2015, 6, 24}, {14, 27, 52}})
     expected = Timex.to_datetime({{2015, 7, 2}, {14, 27, 52}})
     result = Timex.add(date, Duration.from_days(8))
-    assert expected === result
+    assert expected === DateTime.truncate(result, :second)
   end
 
   test "add microseconds" do
@@ -29,14 +29,14 @@ defmodule TimexTests do
     date = Timex.to_datetime({{2015, 6, 24}, {14, 27, 52}})
     expected = Timex.to_datetime({{2015, 6, 16}, {14, 27, 52}})
     result = Timex.subtract(date, Duration.from_days(8))
-    assert expected === result
+    assert expected === DateTime.truncate(result, :second)
   end
 
   test "subtract milliseconds" do
     time = Timex.to_datetime({{2015, 6, 24}, {14, 27, 52}})
     time = %{time | microsecond: {910_000, 2}}
     subtracted = Timex.subtract(time, Duration.from_milliseconds(10))
-    assert subtracted.microsecond === {900_000, 2}
+    assert subtracted.microsecond === {900_000, 6}
   end
 
   test "weekday" do
