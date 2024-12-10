@@ -19,7 +19,8 @@ defmodule Timex.Timezone.Utils do
         def to_olson(unquote(key)), do: unquote(value)
       end
 
-    Module.eval_quoted(__MODULE__, quoted, [], __ENV__)
+    {result, _binding} = Code.eval_quoted(quoted, [], __ENV__)
+    result
   end)
 
   def to_olson(_tz), do: nil
@@ -39,7 +40,8 @@ defmodule Timex.Timezone.Utils do
         def olson_to_win(unquote(key)), do: unquote(value)
       end
 
-    Module.eval_quoted(__MODULE__, quoted, [], __ENV__)
+    {result, _binding} = Code.eval_quoted(quoted, [], __ENV__)
+    result
   end)
 
   def olson_to_win(_tz), do: nil
