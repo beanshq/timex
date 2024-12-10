@@ -62,7 +62,7 @@ defmodule Timex.Mixfile do
       {:benchfella, "~> 0.3", only: [:bench]},
       {:dialyxir, "~> 1.0", only: [:dev], runtime: false},
       {:excoveralls, "~> 0.4", only: [:test]},
-      {:stream_data, "~> 0.4", only: [:test]}
+      {:stream_data, "~> 1.1", only: [:test]}
     ]
   end
 
