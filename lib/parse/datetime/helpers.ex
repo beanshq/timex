@@ -165,7 +165,7 @@ defmodule Timex.Parse.DateTime.Helpers do
       {:spaces, _, max} -> skip(spaces()) |> choice(Enum.map(max..1, &fixed_integer(&1)))
       {_, -1, nil} -> Text.integer()
       {_, min, nil} -> fixed_integer(min)
-      {_, min, max} -> choice(Enum.map(max..min, &fixed_integer(&1)))
+      {_, min, max} -> choice(Enum.map(max..min//-1, &fixed_integer(&1)))
     end
   end
 end
